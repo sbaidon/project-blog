@@ -5,8 +5,11 @@ import { format } from "date-fns";
 import Card from "@/components/card";
 
 import styles from "./blog-summary-card.module.css";
+import { Blog } from "@/models/blogs";
 
-function BlogSummaryCard({ slug, title, publishedOn, abstract }) {
+type Props = Blog;
+
+function BlogSummaryCard({ slug, title, publishedOn, abstract }: Props) {
   const href = `/${slug}`;
   const humanizedDate = format(new Date(publishedOn), "MMMM do, yyyy");
 

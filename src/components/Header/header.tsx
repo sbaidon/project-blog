@@ -1,9 +1,11 @@
 import React from "react";
 import clsx from "clsx";
-import { Rss, Sun, Moon } from "react-feather";
+import { Rss } from "react-feather";
+import Link from "next/link";
 
 import Logo from "@/components/logo";
 import VisuallyHidden from "@/components/visually-hidden";
+import Toggle from "./theme-toggle";
 
 import styles from "./Header.module.css";
 
@@ -13,7 +15,7 @@ function Header({ theme, className, ...delegated }) {
       <Logo />
 
       <div className={styles.actions}>
-        <button className={styles.action}>
+        <Link href="/rss.xml" className={styles.action}>
           <Rss
             size="1.5rem"
             style={{
@@ -22,11 +24,8 @@ function Header({ theme, className, ...delegated }) {
             }}
           />
           <VisuallyHidden>View RSS feed</VisuallyHidden>
-        </button>
-        <button className={styles.action}>
-          <Sun size="1.5rem" />
-          <VisuallyHidden>Toggle dark / light mode</VisuallyHidden>
-        </button>
+        </Link>
+        <Toggle initialTheme={theme} />
       </div>
     </header>
   );

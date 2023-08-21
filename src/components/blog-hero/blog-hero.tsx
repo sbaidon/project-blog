@@ -3,8 +3,16 @@ import { format } from "date-fns";
 import clsx from "clsx";
 
 import styles from "./blog-hero.module.css";
+import { DelegatedProps } from "@/utility-types";
+import { Blog } from "@/models/blogs";
 
-function BlogHero({ title, publishedOn, className, ...delegated }) {
+type Props = DelegatedProps<
+  Pick<Blog, "publishedOn" | "title"> & {
+    className?: string;
+  }
+>;
+
+function BlogHero({ title, publishedOn, className, ...delegated }: Props) {
   const humanizedDate = format(new Date(publishedOn), "MMMM do, yyyy");
 
   return (

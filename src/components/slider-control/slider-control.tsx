@@ -1,9 +1,15 @@
 import React from "react";
 
 import Slider from "@/components/slider";
-import styles from "./SliderControl.module.css";
+import styles from "./slider-control.module.css";
+import { DelegatedProps } from "@/utility-types";
 
-function SliderControl({ label, value, ...delegated }) {
+type Props = DelegatedProps<{
+  label: string;
+  value: number;
+}>;
+
+function SliderControl({ label, value, ...delegated }: Props) {
   const id = React.useId();
 
   return (

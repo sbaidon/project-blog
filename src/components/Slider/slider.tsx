@@ -1,9 +1,14 @@
-import React from 'react';
-import clsx from 'clsx';
+import React from "react";
+import clsx from "clsx";
 
-import styles from './Slider.module.css';
+import styles from "./Slider.module.css";
+import { DelegatedProps } from "@/utility-types";
 
-function Slider({ className, ...delegated }) {
+type Props = DelegatedProps<{
+  className?: string;
+}>;
+
+function Slider({ className, ...delegated }: Props) {
   return (
     <input
       type="range"
