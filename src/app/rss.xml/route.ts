@@ -1,6 +1,6 @@
 import RSS from "rss";
 
-import { BLOG_TITLE, BLOG_DESCRIPTION } from "@/constants";
+import { BLOG_TITLE, BLOG_DESCRIPTION, DOMAIN } from "@/constants";
 import { getBlogPostList } from "@/helpers/file-helpers";
 
 export async function GET() {
@@ -16,7 +16,7 @@ export async function GET() {
       title: post.title,
       description: post.abstract,
       date: post.publishedOn,
-      url: `https://sbaidon.com/${post.slug}`,
+      url: `https://${DOMAIN}/${post.slug}`,
     });
   });
 

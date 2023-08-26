@@ -1,4 +1,4 @@
-# Blog Project
+# Blog
 
 ## Getting Started
 

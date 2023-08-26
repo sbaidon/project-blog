@@ -1,6 +1,8 @@
 export const BLOG_TITLE = "Sergio Baidon";
 export const BLOG_DESCRIPTION = "Just another blog";
 
+export const DOMAIN = "sbaidon.dev"
+
 export const LIGHT_COLORS = {
   "--color-text": "hsl(0deg 0% 5%)",
   "--color-primary-100": "hsl(240deg 100% 90%)",
