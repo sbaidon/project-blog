@@ -9,7 +9,7 @@ async function Home() {
   const blogs = await getBlogPostList();
   return (
     <div className={styles.wrapper}>
-      <h1 className={styles.mainHeading}>Latest Content:</h1>
+      <h1 className={styles.mainHeading}>Latest Content</h1>
 
       {blogs.map((blog) => (
         <BlogSummaryCard {...blog} key={blog.slug} />
