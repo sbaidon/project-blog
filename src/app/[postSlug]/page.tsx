@@ -3,7 +3,7 @@ import React from "react";
 import BlogHero from "@/components/blog-hero";
 
 import styles from "./postSlug.module.css";
-import { loadBlogPost, getBlogPostList } from "@/helpers/file-helpers";
+import { loadBlogPost } from "@/helpers/file-helpers";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import CodeSnippet from "@/components/code-snippet/code-snippet";
 import { notFound } from "next/navigation";
@@ -44,6 +44,7 @@ const components = {
   CircularColorsDemo: (props) => <CircularColorsDemo {...props} />,
 };
 
+/** Cannot be used until: https://github.com/vercel/next.js/issues/45979 is fixed.
 export async function generateStaticParams() {
   const posts = await getBlogPostList();
   return posts.map(post => ({
@@ -52,6 +53,8 @@ export async function generateStaticParams() {
       }
     }))
 }
+ * 
+ */
 
 async function BlogPost({ params }: Props) {
   const post = await loadBlogPost(params.postSlug);
