@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './Equation.module.css';
+import styles from './equation.module.css';
 
 function Equation({ dividend, divisor, remainder }) {
   return (
