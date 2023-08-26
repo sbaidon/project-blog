@@ -14,6 +14,8 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 import "./styles.css";
 import { cookies } from "next/headers";
+import { Analytics } from '@vercel/analytics/react';
+
 
 const mainFont = Work_Sans({
   subsets: ["latin"],
@@ -48,6 +50,7 @@ function RootLayout({ children }) {
           <Header theme={theme} />
           <main>{children}</main>
           <Footer />
+          <Analytics />
         </body>
       </html>
     </MotionConfig>
