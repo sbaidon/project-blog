@@ -2,11 +2,14 @@ import React from "react";
 import Link from "next/link";
 
 import Logo from "@/components/logo";
+import {useTranslations} from 'next-intl';
 
 import DecorativeSwoops from "./decorative-swoops";
 import styles from "./footer.module.css";
 
 function Footer() {
+  const t = useTranslations('Index');
+
   return (
     <div className={styles.wrapper}>
       <DecorativeSwoops />
@@ -27,13 +30,13 @@ function Footer() {
           <h2 className={styles.linkHeading}>Links</h2>
           <ul className={styles.linkList}>
             <li>
-              <Link href="/rss.xml">RSS feed</Link>
+              <Link href="/rss.xml">{t("rss")}</Link>
             </li>
             <li>
-              <Link href="/todo">Terms of Use</Link>
+              <Link href="/todo">{t("terms-of-use")}</Link>
             </li>
             <li>
-              <Link href="/todo">Privacy Policy</Link>
+              <Link href="/todo">{t("privacy-policy")}</Link>
             </li>
             <li>
               <a href="https://twitter.com/sbaidon">Twitter</a>

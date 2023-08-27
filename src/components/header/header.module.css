@@ -15,6 +15,7 @@
   display: flex;
   gap: 16px;
   align-items: center;
+  position: relative;
 }
 .action {
   display: block;
@@ -35,4 +36,38 @@
 }
 .action svg {
   display: block;
+}
+
+.language-dropdown:hover .language-menu {
+  display: block;
+}
+
+.language-menu {
+  display: none;
+  position: absolute;
+  background: var(--color-card-background);
+  box-shadow: var(--shadow-card);
+  border-radius: 2px;
+  padding: 16px 24px;
+  border-radius: 12px;
+  list-style-type: none;
+  z-index: 1;
+  padding: 0;
+  margin: 0;
+}
+
+.language-menu li, .language-menu a {
+  text-decoration: none;
+}
+
+.language-menu li {
+  padding: .5em 2em;
+}
+
+.language-menu .active {
+  text-decoration: underline;
+}
+
+.language-menu li:hover {
+  text-decoration: underline;
 }

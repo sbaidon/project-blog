@@ -1,17 +1,17 @@
-import fs from "fs/promises";
 import path from "path";
 import matter from "gray-matter";
 import { Blog, Frontmatter } from "@/models/blogs";
 import React from "react";
+import { readFileSync, readdirSync } from "fs";
 
-export const getBlogPostList = React.cache(async (): Promise<Blog[]> => {
+export const getBlogPostList = React.cache((): Blog[] => {
   try {
-    const fileNames = await readDirectory("/content");
+    const fileNames = readDirectory("/content");
 
     const blogPosts: Blog[] = [];
 
     for (let fileName of fileNames) {
-      const rawContent = await readFile(`/content/${fileName}`);
+      const rawContent = readFile(`/content/${fileName}`);
 
       const content = matter(rawContent);
       // TODO: Figure out how to type this correctly.
@@ -32,9 +32,9 @@ export const getBlogPostList = React.cache(async (): Promise<Blog[]> => {
 });
 
 export const loadBlogPost = React.cache(
-  async (
+  (
     slug
-  ): Promise<{ frontmatter: Frontmatter; content: string } | null> => {
+  ): { frontmatter: Frontmatter; content: string } | null => {
     let rawContent;
 
     // Wrapping this operation in a try/catch so that it stops
@@ -42,7 +42,7 @@ export const loadBlogPost = React.cache(
     // we'll return `null`, and the caller can figure out how
     // to handle this situation.
     try {
-      rawContent = await readFile(`/content/${slug}.mdx`);
+      rawContent = readFile(`/content/${slug}.mdx`);
 
       const { data, content } = matter(rawContent);
 
@@ -50,15 +50,16 @@ export const loadBlogPost = React.cache(
 
       return { frontmatter, content };
     } catch (err) {
+      console.group(err)
       return null;
     }
   }
 );
 
 function readFile(localPath) {
-  return fs.readFile(path.join(process.cwd(), localPath), "utf8");
+  return readFileSync(path.join(process.cwd(), localPath), "utf8");
 }
 
 function readDirectory(localPath) {
-  return fs.readdir(path.join(process.cwd(), localPath));
+  return readdirSync(path.join(process.cwd(), localPath));
 }

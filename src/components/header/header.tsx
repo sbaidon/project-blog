@@ -1,15 +1,26 @@
 import React from "react";
 import clsx from "clsx";
 import { Rss } from "react-feather";
-import Link from "next/link";
+import Link from "next-intl/link";
+import { useTranslations } from "next-intl";
 
 import Logo from "@/components/logo";
 import VisuallyHidden from "@/components/visually-hidden";
 import Toggle from "./theme-toggle";
 
 import styles from "./header.module.css";
+import { DelegatedProps } from "@/utility-types";
+import { LOCALES } from "@/constants";
+import LocalesMenu from "./locales-menu";
 
-function Header({ theme, className, ...delegated }) {
+type Props = DelegatedProps<{
+  theme: "light" | "dark" | string;
+  className?: string;
+}>;
+
+function Header({ theme, className, ...delegated }: Props) {
+  const t = useTranslations("Index");
+
   return (
     <header className={clsx(styles.wrapper, className)} {...delegated}>
       <Logo />
@@ -23,9 +34,10 @@ function Header({ theme, className, ...delegated }) {
               transform: "translate(2px, -2px)",
             }}
           />
-          <VisuallyHidden>View RSS feed</VisuallyHidden>
+          <VisuallyHidden>{t("rss")}</VisuallyHidden>
         </Link>
         <Toggle initialTheme={theme} />
+        <LocalesMenu locales={LOCALES} />
       </div>
     </header>
   );

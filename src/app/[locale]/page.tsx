@@ -4,13 +4,15 @@ import BlogSummaryCard from "@/components/blog-summary-card";
 
 import styles from "./homepage.module.css";
 import { getBlogPostList } from "@/helpers/file-helpers";
+import { useTranslations } from "next-intl";
 
-async function Home() {
-  const blogs = await getBlogPostList();
+function Home() {
+  const blogs = getBlogPostList();
+  const t = useTranslations("Index");
+
   return (
     <div className={styles.wrapper}>
-      <h1 className={styles.mainHeading}>Latest Content</h1>
-
+      <h1 className={styles.mainHeading}>{t("posts")}</h1>
       {blogs.map((blog) => (
         <BlogSummaryCard {...blog} key={blog.slug} />
       ))}

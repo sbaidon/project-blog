@@ -23,8 +23,8 @@ type Props = {
   };
 };
 
-export async function generateMetadata({ params }) {
-  const post = await loadBlogPost(params.postSlug);
+export function generateMetadata({ params }) {
+  const post = loadBlogPost(params.postSlug);
 
   if (!post) {
     return null;
@@ -57,7 +57,7 @@ export async function generateStaticParams() {
  */
 
 async function BlogPost({ params }: Props) {
-  const post = await loadBlogPost(params.postSlug);
+  const post = loadBlogPost(params.postSlug);
 
   if (!post) {
     notFound();

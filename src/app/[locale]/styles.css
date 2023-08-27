@@ -68,7 +68,7 @@ html {
   background-image: none !important;
   background-clip: revert !important;
   -webkit-background-clip: revert !important;
-  text-shadow: none !important;
+  text-shadow: none !important
 }
 
 html {
