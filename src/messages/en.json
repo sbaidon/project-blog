@@ -1,6 +1,8 @@
 {
-    "Index": {
+    "index": {
         "posts": "Posts",
+        "blog-title": "Version Control",
+        "blog-description": "Revisando cambios",
         "rss": "View RSS Feed",
         "terms-of-use": "Terms of use",
         "privacy-policy": "Privacy policy",

@@ -1,22 +1,22 @@
 import React from "react";
 import Link from "next/link";
 
-import { BLOG_TITLE } from "@/constants";
-
 import styles from "./Logo.module.css";
+import { useTranslations } from "next-intl";
 
 type Props = {
   mobileAlignment?: "center" | "left" | "right";
 };
 
 function Logo({ mobileAlignment = "left" }: Props) {
+  const t = useTranslations("index");
   return (
     <Link
       href="/"
       className={styles.wrapper}
       data-mobile-alignment={mobileAlignment}
     >
-      {BLOG_TITLE}
+      {t("blog-title")}
     </Link>
   );
 }

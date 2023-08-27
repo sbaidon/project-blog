@@ -38,12 +38,7 @@
   display: block;
 }
 
-.language-dropdown:hover .language-menu {
-  display: block;
-}
-
 .language-menu {
-  display: none;
   position: absolute;
   background: var(--color-card-background);
   box-shadow: var(--shadow-card);

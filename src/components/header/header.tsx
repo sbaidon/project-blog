@@ -2,6 +2,7 @@ import React from "react";
 import clsx from "clsx";
 import { Rss } from "react-feather";
 import Link from "next-intl/link";
+import NextLink from "next/link";
 import { useTranslations } from "next-intl";
 
 import Logo from "@/components/logo";
@@ -19,14 +20,14 @@ type Props = DelegatedProps<{
 }>;
 
 function Header({ theme, className, ...delegated }: Props) {
-  const t = useTranslations("Index");
+  const t = useTranslations("index");
 
   return (
     <header className={clsx(styles.wrapper, className)} {...delegated}>
       <Logo />
 
       <div className={styles.actions}>
-        <Link href="/rss.xml" className={styles.action}>
+        <NextLink href="/rss.xml" className={styles.action}>
           <Rss
             size="1.5rem"
             style={{
@@ -35,7 +36,7 @@ function Header({ theme, className, ...delegated }: Props) {
             }}
           />
           <VisuallyHidden>{t("rss")}</VisuallyHidden>
-        </Link>
+        </NextLink>
         <Toggle initialTheme={theme} />
         <LocalesMenu locales={LOCALES} />
       </div>

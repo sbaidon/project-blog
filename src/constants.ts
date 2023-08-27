@@ -1,5 +1,6 @@
-export const BLOG_TITLE = "Sergio Baidon";
-export const BLOG_DESCRIPTION = "Just another blog";
+export const BLOG_TITLE = "Versión Control";
+
+export const BLOG_DESCRIPTION = "Tracking Changes";
 
 export const DOMAIN = "sbaidon.dev"
 

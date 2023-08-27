@@ -2,16 +2,16 @@ import React from "react";
 import Link from "next/link";
 
 import Logo from "@/components/logo";
-import {useTranslations} from 'next-intl';
+import { useTranslations } from "next-intl";
 
 import DecorativeSwoops from "./decorative-swoops";
 import styles from "./footer.module.css";
 
 function Footer() {
-  const t = useTranslations('Index');
+  const t = useTranslations("index");
 
   return (
-    <div className={styles.wrapper}>
+    <footer className={styles.wrapper}>
       <DecorativeSwoops />
       <div className={styles.content}>
         <div>
@@ -23,7 +23,10 @@ function Footer() {
             for more information.
           */}
           <p className={styles.attribution}>
-            Sergio Baidon
+            Blog template created by{" "}
+            <a href="https://www.joshwcomeau.com/">Josh W. Comeau</a>. Check out{" "}
+            <a href="https://www.joyofreact.com/">The Joy of React</a> to learn
+            how to build dynamic React apps like this one!
           </p>
         </div>
         <nav>
@@ -44,7 +47,7 @@ function Footer() {
           </ul>
         </nav>
       </div>
-    </div>
+    </footer>
   );
 }
 

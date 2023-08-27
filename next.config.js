@@ -5,6 +5,9 @@ const withNextIntl = require('next-intl/plugin')(
 
 module.exports = withNextIntl({
   experimental: {
+    typedRoutes: true,
+  },
+  experimental: {
     outputFileTracingIncludes: {
       "/*": ["./content/**/*"],
     },

@@ -8,7 +8,7 @@ import { useTranslations } from "next-intl";
 
 function Home() {
   const blogs = getBlogPostList();
-  const t = useTranslations("Index");
+  const t = useTranslations("index");
 
   return (
     <div className={styles.wrapper}>
