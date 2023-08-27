@@ -19,12 +19,13 @@ const CircularColorsDemo = dynamic(
 
 type Props = {
   params: {
+    locale: string;
     postSlug: string;
   };
 };
 
 export function generateMetadata({ params }) {
-  const post = loadBlogPost(params.postSlug);
+  const post = loadBlogPost(params.locale, params.postSlug);
 
   if (!post) {
     return null;
@@ -57,7 +58,7 @@ export async function generateStaticParams() {
  */
 
 async function BlogPost({ params }: Props) {
-  const post = loadBlogPost(params.postSlug);
+  const post = loadBlogPost(params.locale, params.postSlug);
 
   if (!post) {
     notFound();

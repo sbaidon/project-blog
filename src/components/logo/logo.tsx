@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "next/link";
+import Link from "next-intl/link";
 
 import styles from "./Logo.module.css";
 import { useTranslations } from "next-intl";

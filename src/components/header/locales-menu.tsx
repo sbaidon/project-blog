@@ -7,6 +7,7 @@ import { useLocale, useTranslations } from "next-intl";
 import styles from "./header.module.css";
 import { Globe } from "react-feather";
 import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
+import { useDetectClickOutside } from "@/hooks/use-click-outside";
 import clsx from "clsx";
 import { useId, useState } from "react";
 
@@ -19,16 +20,18 @@ export default function LocalesMenu({ locales }: Props) {
   const activeLocale = useLocale();
   const t = useTranslations("index");
   const [active, setActive] = useState(false);
+  const ref = useDetectClickOutside({
+    onTriggered: () => setActive(false),
+  });
   const id = useId();
 
   return (
     <LayoutGroup>
-      <div
-        className={styles["language-dropdown"]}
-        onMouseLeave={() => setActive(false)}
-        onMouseEnter={() => setActive(true)}
-      >
-        <button className={clsx(styles.action)}>
+      <div className={styles["language-dropdown"]} ref={ref}>
+        <button
+          className={clsx(styles.action)}
+          onClick={() => setActive((active) => !active)}
+        >
           <Globe size="1.5rem" />
         </button>
         <AnimatePresence>

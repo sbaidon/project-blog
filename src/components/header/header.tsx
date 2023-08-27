@@ -1,7 +1,6 @@
 import React from "react";
 import clsx from "clsx";
 import { Rss } from "react-feather";
-import Link from "next-intl/link";
 import NextLink from "next/link";
 import { useTranslations } from "next-intl";
 

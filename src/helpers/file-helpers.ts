@@ -4,14 +4,14 @@ import { Blog, Frontmatter } from "@/models/blogs";
 import React from "react";
 import { readFileSync, readdirSync } from "fs";
 
-export const getBlogPostList = React.cache((): Blog[] => {
+export const getBlogPostList = React.cache((locale = "en"): Blog[] => {
   try {
-    const fileNames = readDirectory("/content");
+    const fileNames = readDirectory(`/content/${locale}`);
 
     const blogPosts: Blog[] = [];
 
     for (let fileName of fileNames) {
-      const rawContent = readFile(`/content/${fileName}`);
+      const rawContent = readFile(`/content/${locale}/${fileName}`);
 
       const content = matter(rawContent);
       // TODO: Figure out how to type this correctly.
@@ -33,6 +33,7 @@ export const getBlogPostList = React.cache((): Blog[] => {
 
 export const loadBlogPost = React.cache(
   (
+    locale,
     slug
   ): { frontmatter: Frontmatter; content: string } | null => {
     let rawContent;
@@ -42,7 +43,7 @@ export const loadBlogPost = React.cache(
     // we'll return `null`, and the caller can figure out how
     // to handle this situation.
     try {
-      rawContent = readFile(`/content/${slug}.mdx`);
+      rawContent = readFile(`/content/${locale}/${slug}.mdx`);
 
       const { data, content } = matter(rawContent);
 
