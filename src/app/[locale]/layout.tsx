@@ -11,9 +11,9 @@ import { cookies } from "next/headers";
 import { Analytics } from "@vercel/analytics/react";
 import { useLocale } from "next-intl";
 import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "@/helpers/file-helpers";
 
 import "./styles.css";
-import { getMessages } from "@/helpers/file-helpers";
 
 const mainFont = Work_Sans({
   subsets: ["latin"],

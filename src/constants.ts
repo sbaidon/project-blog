@@ -1,7 +1,5 @@
 export const BLOG_TITLE = "Versión Control";
 
-export const BLOG_DESCRIPTION = "Tracking Changes";
-
 export const DOMAIN = "sbaidon.dev"
 
 export const LOCALES = ["es", "en"];

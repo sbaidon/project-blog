@@ -1,15 +1,35 @@
 import RSS from "rss";
 
-import { BLOG_TITLE, BLOG_DESCRIPTION, DOMAIN } from "@/constants";
+import { DOMAIN, LOCALES } from "@/constants";
+import { headers } from 'next/headers'
+import { getMessages } from "@/helpers/file-helpers";
+import { createTranslator } from "next-intl";
+
 import { getBlogPostList } from "@/helpers/file-helpers";
 
-export async function GET() {
-  const feed = new RSS({
-    title: BLOG_TITLE,
-    description: BLOG_DESCRIPTION,
-  });
+const LOCALES_SET = new Set(LOCALES);
 
-  const blogPosts = await getBlogPostList();
+export async function GET() {
+  const headersList = headers()
+  const acceptLanguage = headersList.get('accept-language')
+  // Default to english
+  let locale = "en";
+
+  if (LOCALES_SET.has(acceptLanguage)) {
+    locale = acceptLanguage;
+  }
+
+  const messages = await getMessages(locale);
+  const t = createTranslator({ locale, messages });
+
+  const rss = {
+    title: t("index.blog-title"),
+    description: t("index.blog-description"),
+  };
+
+  const feed = new RSS(rss);
+
+  const blogPosts = getBlogPostList();
 
   blogPosts.forEach((post) => {
     feed.item({
