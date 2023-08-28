@@ -28,7 +28,7 @@ function BlogSummaryCard({ slug, title, publishedOn, abstract }: Props) {
         })}
       </time>
       <p>
-        {abstract}{" "}
+        {abstract}&nbsp;
         <Link href={href} className={styles.continueReadingLink}>
           {t("continue-reading")}
           <span className={styles.arrow}>→</span>

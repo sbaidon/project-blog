@@ -4,10 +4,11 @@ import BlogSummaryCard from "@/components/blog-summary-card";
 
 import styles from "./homepage.module.css";
 import { getBlogPostList } from "@/helpers/file-helpers";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 function Home() {
-  const blogs = getBlogPostList();
+  const locale = useLocale();
+  const blogs = getBlogPostList(locale);
   const t = useTranslations("index");
 
   return (

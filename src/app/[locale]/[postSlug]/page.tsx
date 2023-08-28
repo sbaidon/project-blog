@@ -5,17 +5,9 @@ import BlogHero from "@/components/blog-hero";
 import styles from "./postSlug.module.css";
 import { loadBlogPost } from "@/helpers/file-helpers";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import CodeSnippet from "@/components/code-snippet/code-snippet";
+import { TitleCard } from "@/components/card";
 import { notFound } from "next/navigation";
-
-import dynamic from "next/dynamic";
-
-const DivisionGroupsDemo = dynamic(
-  () => import("@/components/division-groups-demo")
-);
-const CircularColorsDemo = dynamic(
-  () => import("@/components/circular-colors-demo")
-);
+import remarkGfm from "remark-gfm"; // Tables, footnotes, strikethrough, task lists, literal URLs.
 
 type Props = {
   params: {
@@ -38,11 +30,7 @@ export function generateMetadata({ params }) {
 }
 
 const components = {
-  CodeSnippet: (props) => (
-    <CodeSnippet {...props}>{props.children}</CodeSnippet>
-  ),
-  DivisionGroupsDemo: (props) => <DivisionGroupsDemo {...props} />,
-  CircularColorsDemo: (props) => <CircularColorsDemo {...props} />,
+  TitleCard: (props) => <TitleCard {...props} />,
 };
 
 /** Cannot be used until: https://github.com/vercel/next.js/issues/45979 is fixed.
@@ -74,7 +62,15 @@ async function BlogPost({ params }: Props) {
         publishedOn={frontmatter.publishedOn}
       />
       <div className={styles.page}>
-        <MDXRemote source={content} components={components} />
+        <MDXRemote
+          source={content}
+          components={components}
+          options={{
+            mdxOptions: {
+              remarkPlugins: [remarkGfm],
+            },
+          }}
+        />
       </div>
     </article>
   );

@@ -13,3 +13,43 @@
     border-radius: 8px !important;
   }
 }
+
+
+.title-card-wrapper {
+  padding: var(--viewport-padding);
+  margin-left: calc(var(--viewport-padding) * -1);
+  margin-right: calc(var(--viewport-padding) * -1);
+}
+
+.title-card-main {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.title-card-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  align-content: baseline;
+}
+
+.title-card-body a {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title-card-body a span {
+  padding-left: .5em;
+}
+
+.title-card-links {
+  display: flex;
+  gap: 2em;
+  justify-content: space-between;
+  list-style-type: none;
+}
+
+.title-card-links li {
+  flex: 1;
+}
