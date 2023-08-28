@@ -6,19 +6,24 @@ import styles from "./homepage.module.css";
 import { getBlogPostList } from "@/helpers/file-helpers";
 import { useLocale, useTranslations } from "next-intl";
 
-function Home() {
+async function Home() {
   const locale = useLocale();
-  const blogs = getBlogPostList(locale);
-  const t = useTranslations("index");
+  const blogs = await getBlogPostList(locale);
 
   return (
     <div className={styles.wrapper}>
-      <h1 className={styles.mainHeading}>{t("posts")}</h1>
+      <Title />
       {blogs.map((blog) => (
         <BlogSummaryCard {...blog} key={blog.slug} />
       ))}
     </div>
   );
+}
+
+function Title() {
+  const t = useTranslations("index");
+
+  return <h1 className={styles.mainHeading}>{t("posts")}</h1>;
 }
 
 export default Home;

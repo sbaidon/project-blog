@@ -16,8 +16,8 @@ type Props = {
   };
 };
 
-export function generateMetadata({ params }) {
-  const post = loadBlogPost(params.locale, params.postSlug);
+export async function generateMetadata({ params }) {
+  const post = await loadBlogPost(params.locale, params.postSlug);
 
   if (!post) {
     return null;
@@ -46,7 +46,7 @@ export async function generateStaticParams() {
  */
 
 async function BlogPost({ params }: Props) {
-  const post = loadBlogPost(params.locale, params.postSlug);
+  const post = await loadBlogPost(params.locale, params.postSlug);
 
   if (!post) {
     notFound();

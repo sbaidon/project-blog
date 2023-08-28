@@ -29,7 +29,7 @@ export async function GET() {
 
   const feed = new RSS(rss);
 
-  const blogPosts = getBlogPostList();
+  const blogPosts = await getBlogPostList();
 
   blogPosts.forEach((post) => {
     feed.item({
