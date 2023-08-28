@@ -4,7 +4,7 @@ export const BLOG_DESCRIPTION = "Tracking Changes";
 
 export const DOMAIN = "sbaidon.dev"
 
-export const LOCALES = ["en", "es"];
+export const LOCALES = ["es", "en"];
 
 export const LIGHT_COLORS = {
   "--color-text": "hsl(0deg 0% 5%)",

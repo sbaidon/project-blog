@@ -2,7 +2,8 @@
 
 import { LOCALES } from "@/constants";
 import Link from "next-intl/link";
-import { usePathname } from "next/navigation";
+import { usePathname } from "next-intl/client";
+
 import { useLocale, useTranslations } from "next-intl";
 import styles from "./header.module.css";
 import { Globe } from "react-feather";
@@ -15,7 +16,7 @@ type Props = {
   locales: typeof LOCALES;
 };
 
-export default function LocalesMenu({ locales }: Props) {
+export default function LanguageMenu({ locales }: Props) {
   const pathname = usePathname();
   const activeLocale = useLocale();
   const t = useTranslations("index");

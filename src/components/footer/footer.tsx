@@ -36,12 +36,6 @@ function Footer() {
               <Link href="/rss.xml">{t("rss")}</Link>
             </li>
             <li>
-              <Link href="/todo">{t("terms-of-use")}</Link>
-            </li>
-            <li>
-              <Link href="/todo">{t("privacy-policy")}</Link>
-            </li>
-            <li>
               <a href="https://twitter.com/sbaidon">Twitter</a>
             </li>
           </ul>

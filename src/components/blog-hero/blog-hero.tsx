@@ -1,11 +1,10 @@
 import React from "react";
-import { format } from "date-fns";
 import clsx from "clsx";
 
 import styles from "./blog-hero.module.css";
 import { DelegatedProps } from "@/utility-types";
 import { Blog } from "@/models/blogs";
-import { useTranslations } from "next-intl";
+import { useFormatter, useTranslations } from "next-intl";
 
 type Props = DelegatedProps<
   Pick<Blog, "publishedOn" | "title"> & {
@@ -14,7 +13,8 @@ type Props = DelegatedProps<
 >;
 
 function BlogHero({ title, publishedOn, className, ...delegated }: Props) {
-  const humanizedDate = format(new Date(publishedOn), "MMMM do, yyyy");
+  const humanizedDate = new Date(publishedOn);
+  const formatter = useFormatter();
   const t = useTranslations("index");
 
   return (
@@ -23,7 +23,13 @@ function BlogHero({ title, publishedOn, className, ...delegated }: Props) {
         <h1>{title}</h1>
         <p>
           {t("published-on")}&nbsp;
-          <time dateTime={publishedOn}>{humanizedDate}</time>
+          <time dateTime={publishedOn}>
+            {formatter.dateTime(humanizedDate, {
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            })}
+          </time>
         </p>
       </div>
     </header>

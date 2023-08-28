@@ -39,16 +39,22 @@
 }
 
 .language-menu {
+  --gap: 5px;
   position: absolute;
-  z-index: 1;
+  z-index: 10;
   background: var(--color-card-background);
   box-shadow: var(--shadow-card);
   border-radius: 2px;
   padding: 16px 24px;
   border-radius: 12px;
-  list-style-type: none;
   padding: 0;
   margin: 0;
+  top: calc(100% + var(--gap));
+  list-style-type: none;
+  /**
+  * Avoid getting borders removed with background-color
+  */
+  overflow: hidden;
 }
 
 .language-menu li, .language-menu a {
@@ -60,9 +66,14 @@
 }
 
 .language-menu .active {
-  text-decoration: underline;
+  background-color: var(--color-selection-background);
 }
 
 .language-menu li:hover {
+  border-radius: 2px;
+  background-color: var(--color-selection-background);
   text-decoration: underline;
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: var(--color-primary);
 }
