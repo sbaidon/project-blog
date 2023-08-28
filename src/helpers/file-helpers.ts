@@ -4,6 +4,10 @@ import { Blog, Frontmatter } from "@/models/blogs";
 import React from "react";
 import { readFileSync, readdirSync } from "fs";
 
+export const getMessages = React.cache(async(locale: string) => {
+  return (await import(`../messages/${locale}.json`)).default;
+})
+
 export const getBlogPostList = React.cache((locale = "en"): Blog[] => {
   try {
     const fileNames = readDirectory(`/content/${locale}`);

@@ -3,12 +3,8 @@ import React from "react";
 import { Work_Sans, Spline_Sans_Mono } from "next/font/google";
 import clsx from "clsx";
 import MotionConfig from "@/components/motion-config";
-import {
-  LIGHT_TOKENS,
-  DARK_TOKENS,
-  BLOG_TITLE,
-  BLOG_DESCRIPTION,
-} from "@/constants";
+import { LIGHT_TOKENS, DARK_TOKENS } from "@/constants";
+import { createTranslator } from "next-intl";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { cookies } from "next/headers";
@@ -17,6 +13,7 @@ import { useLocale } from "next-intl";
 import { NextIntlClientProvider } from "next-intl";
 
 import "./styles.css";
+import { getMessages } from "@/helpers/file-helpers";
 
 const mainFont = Work_Sans({
   subsets: ["latin"],
@@ -31,10 +28,20 @@ const monoFont = Spline_Sans_Mono({
   variable: "--font-family-mono",
 });
 
-export const metadata = {
-  title: BLOG_TITLE,
-  description: BLOG_DESCRIPTION,
-};
+export async function generateMetadata({ params }) {
+  const { locale } = params;
+
+  if (!locale) {
+    return notFound();
+  }
+  const messages = await getMessages(locale);
+  const t = createTranslator({ locale, messages });
+
+  return {
+    title: t("index.blog-title"),
+    description: t("index.blog-description"),
+  };
+}
 
 export default async function LocaleLayout({ children, params }) {
   const theme = cookies().get("theme")?.value ?? "light";
@@ -44,7 +51,7 @@ export default async function LocaleLayout({ children, params }) {
   if (params.locale !== locale) {
     notFound();
   }
-  const messages = (await import(`../../messages/${locale}.json`)).default;
+  const messages = await getMessages(locale);
 
   return (
     <MotionConfig>
