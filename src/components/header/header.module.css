@@ -50,6 +50,7 @@
   padding: 0;
   margin: 0;
   top: calc(100% + var(--gap));
+  right: 0;
   list-style-type: none;
   /**
   * Avoid getting borders removed with background-color
