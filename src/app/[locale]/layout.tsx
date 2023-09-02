@@ -54,23 +54,23 @@ export default async function LocaleLayout({ children, params }) {
   const messages = await getMessages(locale);
 
   return (
-    <MotionConfig>
-      <html
-        lang={locale}
-        className={clsx(mainFont.variable, monoFont.variable)}
-        data-color-theme={theme}
-        /* @ts-ignore */
-        style={theme === "light" ? LIGHT_TOKENS : DARK_TOKENS}
-      >
-        <body>
-          <NextIntlClientProvider locale={locale} messages={messages}>
+    <html
+      lang={locale}
+      className={clsx(mainFont.variable, monoFont.variable)}
+      data-color-theme={theme}
+      /* @ts-ignore */
+      style={theme === "light" ? LIGHT_TOKENS : DARK_TOKENS}
+    >
+      <body>
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <MotionConfig>
             <Header theme={theme} />
             <main>{children}</main>
             <Footer />
             <Analytics />
-          </NextIntlClientProvider>
-        </body>
-      </html>
-    </MotionConfig>
+          </MotionConfig>
+        </NextIntlClientProvider>
+      </body>
+    </html>
   );
 }
