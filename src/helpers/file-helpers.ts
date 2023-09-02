@@ -59,7 +59,6 @@ export const loadBlogPost = React.cache(
 
       return { frontmatter, content };
     } catch (err) {
-      console.group(err)
       return null;
     }
   }

@@ -16,6 +16,8 @@ type Props = {
   };
 };
 
+export const revalidate = 3600;
+
 export async function generateMetadata({ params }) {
   const post = await loadBlogPost(params.locale, params.postSlug);
 
