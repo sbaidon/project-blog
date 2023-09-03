@@ -62,14 +62,14 @@ export default async function LocaleLayout({ children, params }) {
       style={theme === "light" ? LIGHT_TOKENS : DARK_TOKENS}
     >
       <body>
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          <MotionConfig>
+        <MotionConfig>
+          <NextIntlClientProvider locale={locale} messages={messages}>
             <Header theme={theme} />
             <main>{children}</main>
             <Footer />
             <Analytics />
-          </MotionConfig>
-        </NextIntlClientProvider>
+          </NextIntlClientProvider>
+        </MotionConfig>
       </body>
     </html>
   );

@@ -4,43 +4,53 @@ import { Blog, Frontmatter } from "@/models/blogs";
 import React from "react";
 import { createReadStream } from "fs";
 import { readdir } from "fs/promises";
+import { Spans, tracer } from "./trace-helpers";
 
-export const getMessages = React.cache(async(locale: string) => {
-  return (await import(`../messages/${locale}.json`)).default;
-})
-
-export const getBlogPostList = React.cache(async(locale = "en"): Promise<Blog[]> => {
+export const getMessages = React.cache(async (locale: string) => {
+  const span = tracer.startSpan(Spans.LoadMessages);
   try {
-    const fileNames = await readDirectory(`/content/${locale}`);
-
-    const blogPosts: Blog[] = [];
-    const filePromises = fileNames.map(fileName => readFile(`/content/${locale}/${fileName}`).then(file => ({
-      fileName,
-      contents: file
-    })));
-    const files = await Promise.all(filePromises);
-
-    for (let file of files) {
-      const content = matter(file.contents);
-      // TODO: Figure out how to type this correctly.
-      const frontmatter = content.data as unknown as Frontmatter;
-
-      blogPosts.push({
-        slug: file.fileName.replace(".mdx", ""),
-        ...frontmatter,
-      });
-    }
-
-    return blogPosts.sort((p1, p2) =>
-      p1.publishedOn < p2.publishedOn ? 1 : -1
-    );
-  } catch (error) {
-    return [];
+    return (await import(`../messages/${locale}.json`)).default;
+  } finally {
+    span.end();
   }
 });
 
+export const getBlogPostList = React.cache(
+  async (locale = "en"): Promise<Blog[]> => {
+    try {
+      const fileNames = await readDirectory(`/content/${locale}`);
+
+      const blogPosts: Blog[] = [];
+      const filePromises = fileNames.map((fileName) =>
+        readFile(`/content/${locale}/${fileName}`).then((file) => ({
+          fileName,
+          contents: file,
+        }))
+      );
+      const files = await Promise.all(filePromises);
+
+      for (let file of files) {
+        const content = matter(file.contents);
+        // TODO: Figure out how to type this correctly.
+        const frontmatter = content.data as unknown as Frontmatter;
+
+        blogPosts.push({
+          slug: file.fileName.replace(".mdx", ""),
+          ...frontmatter,
+        });
+      }
+
+      return blogPosts.sort((p1, p2) =>
+        p1.publishedOn < p2.publishedOn ? 1 : -1
+      );
+    } catch (error) {
+      return [];
+    }
+  }
+);
+
 export const loadBlogPost = React.cache(
-  async(
+  async (
     locale,
     slug
   ): Promise<{ frontmatter: Frontmatter; content: string } | null> => {
@@ -50,6 +60,7 @@ export const loadBlogPost = React.cache(
     // throwing an error if the file can't be found. Instead,
     // we'll return `null`, and the caller can figure out how
     // to handle this situation.
+    const span = tracer.startSpan(Spans.LoadBlogFile);
     try {
       rawContent = await readFile(`/content/${locale}/${slug}.mdx`);
 
@@ -60,6 +71,8 @@ export const loadBlogPost = React.cache(
       return { frontmatter, content };
     } catch (err) {
       return null;
+    } finally {
+      span.end();
     }
   }
 );
@@ -68,20 +81,18 @@ function readFile(localPath): Promise<string> {
   const stream = createReadStream(path.join(process.cwd(), localPath));
   const chunks = [];
 
-
   return new Promise((resolve, reject) => {
     stream.on("data", (chunk) => {
-      chunks.push(Buffer.from(chunk))
-    })
+      chunks.push(Buffer.from(chunk));
+    });
 
     stream.on("end", () => {
-      resolve(Buffer.concat(chunks).toString('utf8'))
-    })
+      resolve(Buffer.concat(chunks).toString("utf8"));
+    });
 
-    stream.on("error", reject)
-    stream.on("close", reject)
+    stream.on("error", reject);
+    stream.on("close", reject);
   });
-
 }
 
 function readDirectory(localPath) {

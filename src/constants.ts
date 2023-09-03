@@ -4,6 +4,8 @@ export const DOMAIN = "sbaidon.dev"
 
 export const LOCALES = ["es", "en"];
 
+export const APP_NAME = "version_control"
+
 export const LIGHT_COLORS = {
   "--color-text": "hsl(0deg 0% 5%)",
   "--color-primary-100": "hsl(240deg 100% 90%)",
