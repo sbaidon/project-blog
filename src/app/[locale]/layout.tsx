@@ -12,6 +12,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { useLocale } from "next-intl";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "@/helpers/file-helpers";
+import ProgressBar from "@/components/progress-bar/progress-bar";
 
 import "./styles.css";
 
@@ -62,6 +63,7 @@ export default async function LocaleLayout({ children, params }) {
       style={theme === "light" ? LIGHT_TOKENS : DARK_TOKENS}
     >
       <body>
+        <ProgressBar />
         <MotionConfig>
           <NextIntlClientProvider locale={locale} messages={messages}>
             <Header theme={theme} />
