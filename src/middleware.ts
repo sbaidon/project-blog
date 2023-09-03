@@ -14,11 +14,9 @@ const intlMiddleware = createMiddleware({
 export default function middleware(request: NextRequest) {
   const span = tracer.startSpan(Spans.IntlMiddleware);
 
-  try {
-    return intlMiddleware(request);
-  } finally {
-    span.end()
-  }
+  const response = intlMiddleware(request);
+  span.end()
+  return response
 }
  
 export const config = {
