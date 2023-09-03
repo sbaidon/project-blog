@@ -2,10 +2,8 @@ import RSS from "rss";
 
 import { DOMAIN, LOCALES } from "@/constants";
 import { headers } from 'next/headers'
-import { getMessages } from "@/helpers/file-helpers";
+import { getMessages, getBlogPostList } from "@/helpers/file-helpers";
 import { createTranslator } from "next-intl";
-
-import { getBlogPostList } from "@/helpers/file-helpers";
 
 const LOCALES_SET = new Set(LOCALES);
 
