@@ -44,7 +44,6 @@
   z-index: 10;
   background: var(--color-card-background);
   box-shadow: var(--shadow-card);
-  border-radius: 2px;
   padding: 16px 24px;
   border-radius: 12px;
   padding: 0;
@@ -67,12 +66,11 @@
 }
 
 .language-menu .active {
-  background-color: var(--color-selection-background);
+  background-color: var(--color-decorative-500);
 }
 
 .language-menu li:hover {
-  border-radius: 2px;
-  background-color: var(--color-selection-background);
+  background-color: var(--color-decorative-500);
   text-decoration: underline;
   text-decoration-line: underline;
   text-decoration-style: wavy;

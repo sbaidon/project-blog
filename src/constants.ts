@@ -1,28 +1,28 @@
 export const BLOG_TITLE = "Versión Control";
 
-export const DOMAIN = "sbaidon.dev"
+export const DOMAIN = "sbaidon.dev";
 
 export const LOCALES = ["es", "en"];
 
-export const APP_NAME = "version_control"
+export const APP_NAME = "version_control";
 
 export const LIGHT_COLORS = {
   "--color-text": "hsl(0deg 0% 5%)",
   "--color-primary-100": "hsl(240deg 100% 90%)",
   "--color-primary-300": "hsl(242deg 100% 70%)",
-  "--color-primary-500": "hsl(245deg 100% 60%)",
-  "--color-primary-700": "hsl(250deg 100% 33%)",
+  "--color-primary-500": "hsl(225deg 90% 50%)",
+  "--color-primary-700": "hsl(204deg 100% 33%)",
   "--color-primary-900": "hsl(256deg 100% 20%)",
   "--color-primary-contrast": "white",
-  "--color-secondary-500": "hsl(328deg 100% 50%)",
-  "--color-decorative-100": "hsl(50deg 100% 94%)",
-  "--color-decorative-200": "hsl(50deg 100% 90%)",
-  "--color-decorative-300": "hsl(50deg 100% 85%)",
-  "--color-decorative-500": "hsl(50deg 100% 70%)",
-  "--color-decorative-600": "hsl(50deg 100% 60%)",
-  "--color-decorative-700": "hsl(50deg 100% 50%)",
-  "--color-decorative-800": "hsl(50deg 100% 33%)",
-  "--color-decorative-900": "hsl(50deg 100% 25%)",
+  "--color-secondary-500": "hsl(285deg 100% 54%)",
+  "--color-decorative-100": "hsl(206deg 100% 94%)",
+  "--color-decorative-200": "hsl(206deg 100% 90%)",
+  "--color-decorative-300": "hsl(206deg 100% 85%)",
+  "--color-decorative-500": "hsl(206deg 100% 70%)",
+  "--color-decorative-600": "hsl(206deg 100% 60%)",
+  "--color-decorative-700": "hsl(206deg 100% 50%)",
+  "--color-decorative-800": "hsl(206deg 100% 33%)",
+  "--color-decorative-900": "hsl(206deg 100% 25%)",
   "--color-gray-0": "white",
   "--color-gray-100": "hsl(50deg 20% 90%)",
   "--color-gray-200": "hsl(50deg 15% 85%)",
@@ -31,6 +31,7 @@ export const LIGHT_COLORS = {
   "--color-gray-700": "hsl(50deg 10% 25%)",
   "--color-gray-900": "hsl(50deg 20% 10%)",
   "--color-gray-1000": "black",
+  "--shadow-color": "225deg 55% 36%",
 };
 
 export const DARK_COLORS = {
@@ -63,7 +64,7 @@ export const DARK_COLORS = {
 // Add in semantic / special colors
 LIGHT_COLORS["--color-primary"] = LIGHT_COLORS["--color-primary-500"];
 LIGHT_COLORS["--color-secondary"] = LIGHT_COLORS["--color-secondary-500"];
-LIGHT_COLORS["--color-inline-code-bg"] = "hsl(45deg 74% 85%)";
+LIGHT_COLORS["--color-inline-code-bg"] = "hsl(210deg 74% 85%)";
 LIGHT_COLORS["--color-selection-text"] = "black";
 LIGHT_COLORS["--color-selection-background"] =
   LIGHT_COLORS["--color-decorative-700"];
@@ -91,17 +92,15 @@ DARK_COLORS["--color-card-border"] = DARK_COLORS["--color-page-border"];
 
 export const LIGHT_SHADOWS = {
   "--shadow-page": `
-    0px 1px 2px hsl(50deg 60% 50% / 0.25),
-    0px 3px 6px hsl(50deg 60% 50% / 0.25),
-    0px 9px 18px hsl(50deg 60% 50% / 0.25),
-    0px 18px 36px hsl(50deg 60% 50% / 0.25),
-    0px 54px 108px hsl(50deg 60% 50% / 0.25)
+    0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.34),
+    0.4px 0.8px 1px -1.2px hsl(var(--shadow-color) / 0.34),
+    1px 2px 2.5px -2.5px hsl(var(--shadow-color) / 0.34);
   `,
   "--shadow-card": `
-    0px 1px 2px hsl(50deg 20% 50% / 0.2),
-    0px 2px 4px hsl(50deg 20% 50% / 0.2),
-    0px 4px 8px hsl(50deg 20% 50% / 0.2),
-    0px 8px 16px hsl(50deg 20% 50% / 0.2)
+    0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.36),
+    0.8px 1.6px 2px -0.8px hsl(var(--shadow-color) / 0.36),
+    2.1px 4.1px 5.2px -1.7px hsl(var(--shadow-color) / 0.36),
+    5px 10px 12.6px -2.5px hsl(var(--shadow-color) / 0.36);
   `,
 };
 export const DARK_SHADOWS = {
