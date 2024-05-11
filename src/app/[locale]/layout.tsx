@@ -12,6 +12,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { useLocale } from "next-intl";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import ProgressBar from "@/components/progress-bar/progress-bar";
 
 import "./styles.css";
@@ -76,6 +77,7 @@ export default async function LocaleLayout({ children, params }) {
             <Analytics />
           </NextIntlClientProvider>
         </MotionConfig>
+        <SpeedInsights />
       </body>
     </html>
   );
