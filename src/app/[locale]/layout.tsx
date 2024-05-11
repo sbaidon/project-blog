@@ -35,7 +35,7 @@ export async function generateMetadata({ params }) {
   if (!locale) {
     return notFound();
   }
-  const messages = await getMessages(locale);
+  const messages = await getMessages();
   const t = createTranslator({ locale, messages });
 
   return {
