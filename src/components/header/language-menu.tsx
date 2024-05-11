@@ -1,8 +1,6 @@
 "use client";
 
-import { LOCALES } from "@/constants";
-import Link from "next-intl/link";
-import { usePathname } from "next-intl/client";
+import { Link, usePathname, Locales } from "@/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import styles from "./header.module.css";
 import { Globe } from "react-feather";
@@ -12,7 +10,7 @@ import clsx from "clsx";
 import { useId, useState } from "react";
 
 type Props = {
-  locales: typeof LOCALES;
+  locales: Locales;
 };
 
 export default function LanguageMenu({ locales }: Props) {

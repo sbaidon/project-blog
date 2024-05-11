@@ -10,7 +10,7 @@ import Toggle from "./theme-toggle";
 
 import styles from "./header.module.css";
 import { DelegatedProps } from "@/utility-types";
-import { LOCALES } from "@/constants";
+import { locales } from "@/navigation";
 import LanguageMenu from "./language-menu";
 
 type Props = DelegatedProps<{
@@ -37,7 +37,7 @@ function Header({ theme, className, ...delegated }: Props) {
           <VisuallyHidden>{t("rss")}</VisuallyHidden>
         </NextLink>
         <Toggle initialTheme={theme} />
-        <LanguageMenu locales={LOCALES} />
+        <LanguageMenu locales={locales} />
       </div>
     </header>
   );

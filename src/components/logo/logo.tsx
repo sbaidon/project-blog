@@ -1,7 +1,7 @@
 import React from "react";
-import Link from "next-intl/link";
+import { Link } from "@/navigation";
 
-import styles from "./Logo.module.css";
+import styles from "./logo.module.css";
 import { useTranslations } from "next-intl";
 
 type Props = {
