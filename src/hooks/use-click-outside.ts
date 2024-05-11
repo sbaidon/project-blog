@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef } from "react";
 
 interface Props {
   onTriggered: (e: Event) => void;
@@ -34,7 +34,7 @@ export function useDetectClickOutside({
           onTriggered(e);
         }
       } else {
-        if (e.key === 'Escape') {
+        if (e.key === "Escape") {
           onTriggered(e);
         }
       }
@@ -50,14 +50,14 @@ export function useDetectClickOutside({
         }
       }
     },
-    [ref.current, onTriggered]
+    [onTriggered]
   );
 
   const eventsConfig: EventConfigItem[] = useMemo(
     () => [
-      [disableClick, 'click', clickOrTouchListener],
-      [disableTouch, 'touchstart', clickOrTouchListener],
-      [disableKeys, 'keyup', keyListener],
+      [disableClick, "click", clickOrTouchListener],
+      [disableTouch, "touchstart", clickOrTouchListener],
+      [disableKeys, "keyup", keyListener],
     ],
     [disableClick, disableTouch, disableKeys, clickOrTouchListener, keyListener]
   );
