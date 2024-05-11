@@ -3,7 +3,7 @@ import React from "react";
 import BlogHero from "@/components/blog-hero";
 
 import styles from "./postSlug.module.css";
-import { getBlogPostList, loadBlogPost } from "@/helpers/file-helpers";
+import { loadBlogPost } from "@/helpers/file-helpers";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { TitleCard } from "@/components/card";
 import { notFound } from "next/navigation";
@@ -33,14 +33,17 @@ const components = {
   TitleCard: (props) => <TitleCard {...props} />,
 };
 
+/** Cannot be used until: https://github.com/vercel/next.js/issues/45979 is fixed.
 export async function generateStaticParams() {
   const posts = await getBlogPostList();
-  return posts.map((post) => ({
-    params: {
-      slug: post.slug,
-    },
-  }));
+  return posts.map(post => ({
+      params: {
+        slug: post.slug
+      }
+    }))
 }
+ * 
+ */
 
 async function BlogPost({ params }: Props) {
   const post = await loadBlogPost(params.locale, params.postSlug);
