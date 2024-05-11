@@ -3,7 +3,7 @@ import React from "react";
 import { Work_Sans, Spline_Sans_Mono } from "next/font/google";
 import clsx from "clsx";
 import MotionConfig from "@/components/motion-config";
-import { LIGHT_TOKENS, DARK_TOKENS } from "@/constants";
+import { LIGHT_TOKENS, DARK_TOKENS, LOCALES } from "@/constants";
 import { createTranslator } from "next-intl";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
@@ -11,7 +11,7 @@ import { cookies } from "next/headers";
 import { Analytics } from "@vercel/analytics/react";
 import { useLocale } from "next-intl";
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "@/helpers/file-helpers";
+import { getMessages } from "next-intl/server";
 import ProgressBar from "@/components/progress-bar/progress-bar";
 
 import "./styles.css";
@@ -44,6 +44,10 @@ export async function generateMetadata({ params }) {
   };
 }
 
+export function generateStaticParams() {
+  return LOCALES.map((locale) => ({ locale }));
+}
+
 export default async function LocaleLayout({ children, params }) {
   const theme = cookies().get("theme")?.value ?? "light";
   const locale = useLocale();
@@ -52,7 +56,7 @@ export default async function LocaleLayout({ children, params }) {
   if (params.locale !== locale) {
     notFound();
   }
-  const messages = await getMessages(locale);
+  const messages = await getMessages();
 
   return (
     <html

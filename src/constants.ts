@@ -4,6 +4,8 @@ export const DOMAIN = "sbaidon.dev";
 
 export const LOCALES = ["es", "en"];
 
+export const LOCALES_SET = new Set(LOCALES);
+
 export const APP_NAME = "version_control";
 
 export const LIGHT_COLORS = {
