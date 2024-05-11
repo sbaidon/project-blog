@@ -6,15 +6,6 @@ import { createReadStream } from "fs";
 import { readdir } from "fs/promises";
 import { Spans, tracer } from "./trace-helpers";
 
-export const getMessages = React.cache(async (locale: string) => {
-  const span = tracer.startSpan(Spans.LoadMessages);
-  try {
-    return (await import(`../messages/${locale}.json`)).default;
-  } finally {
-    span.end();
-  }
-});
-
 export const getBlogPostList = React.cache(
   async (locale = "en"): Promise<Blog[]> => {
     try {

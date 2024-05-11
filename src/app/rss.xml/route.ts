@@ -1,15 +1,16 @@
 import RSS from "rss";
 
 import { DOMAIN, LOCALES } from "@/constants";
-import { headers } from 'next/headers'
-import { getMessages, getBlogPostList } from "@/helpers/file-helpers";
+import { headers } from "next/headers";
+import { getBlogPostList } from "@/helpers/file-helpers";
+import { getMessages } from "next-intl/server";
 import { createTranslator } from "next-intl";
 
 const LOCALES_SET = new Set(LOCALES);
 
 export async function GET() {
-  const headersList = headers()
-  const acceptLanguage = headersList.get('accept-language')
+  const headersList = headers();
+  const acceptLanguage = headersList.get("accept-language");
   // Default to english
   let locale = "en";
 
@@ -17,7 +18,9 @@ export async function GET() {
     locale = acceptLanguage;
   }
 
-  const messages = await getMessages(locale);
+  const messages = await getMessages({
+    locale,
+  });
   const t = createTranslator({ locale, messages });
 
   const rss = {
