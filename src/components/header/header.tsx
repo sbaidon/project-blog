@@ -26,7 +26,7 @@ function Header({ theme, className, ...delegated }: Props) {
       <Logo />
 
       <div className={styles.actions}>
-        <NextLink href="/rss.xml" className={styles.action}>
+        <NextLink href="/rss.xml" className={styles.action} prefetch={false}>
           <Rss
             size="1.5rem"
             style={{

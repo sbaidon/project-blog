@@ -33,7 +33,9 @@ function Footer() {
           <h2 className={styles.linkHeading}>Links</h2>
           <ul className={styles.linkList}>
             <li>
-              <Link href="/rss.xml">{t("rss")}</Link>
+              <Link prefetch={false} href="/rss.xml">
+                {t("rss")}
+              </Link>
             </li>
             <li>
               <a href="https://twitter.com/sbaidon">Twitter</a>
