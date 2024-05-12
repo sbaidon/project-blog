@@ -38,7 +38,7 @@ function Footer() {
               </Link>
             </li>
             <li>
-              <a href="https://twitter.com/sbaidon">Twitter</a>
+              <a href="https://x.com/sbaidon">X</a>
             </li>
           </ul>
         </nav>
