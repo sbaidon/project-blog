@@ -6,7 +6,7 @@ export const LOCALES = ["es", "en"] as const;
 
 export type Locales = typeof LOCALES;
 
-export const LOCALES_SET = new Set(LOCALES);
+export const LOCALES_SET = new Set<string>(LOCALES);
 
 export const APP_NAME = "version_control";
 
