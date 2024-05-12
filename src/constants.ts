@@ -2,7 +2,9 @@ export const BLOG_TITLE = "Versión Control";
 
 export const DOMAIN = "sbaidon.dev";
 
-export const LOCALES = ["es", "en"];
+export const LOCALES = ["es", "en"] as const;
+
+export type Locales = typeof LOCALES;
 
 export const LOCALES_SET = new Set(LOCALES);
 

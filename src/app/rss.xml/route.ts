@@ -6,7 +6,7 @@ import { getBlogPostList } from "@/helpers/file-helpers";
 import { getMessages } from "next-intl/server";
 import { createTranslator } from "next-intl";
 
-const LOCALES_SET = new Set(LOCALES);
+const LOCALES_SET = new Set<string>(LOCALES);
 
 export async function GET() {
   const headersList = headers();

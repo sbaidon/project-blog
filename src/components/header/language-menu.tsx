@@ -1,6 +1,7 @@
 "use client";
 
-import { Link, usePathname, Locales } from "@/navigation";
+import { Link, usePathname } from "@/navigation";
+import { type Locales } from "@/constants";
 import { useLocale, useTranslations } from "next-intl";
 import styles from "./header.module.css";
 import { Globe } from "react-feather";
